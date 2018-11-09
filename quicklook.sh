@@ -68,6 +68,7 @@ do
     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]
     then
         rm $info1
+	exit 0
     else
         exit 0
     fi
