@@ -22,9 +22,6 @@ touch $info1
 # Output server data start:
 # -------------------------
 
-# Add 1 line space 
-echo -e "\n" >> $info1
-
 # Output hostname:
 echo -e "Hostname: $(hostname)\n" >> $info1
 
