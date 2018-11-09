@@ -14,7 +14,7 @@ then
 else 
 	info1=/home/$(hostname)-$(date +"%F-%T".txt)
 fi
-
+rminfo1="n"
 echo -e "\nTemp file location: $info1"
 touch $info1
 
@@ -57,3 +57,18 @@ echo $(find  /usr/local/apache/conf/includes/ -name 'pre*' -name '*.conf' ! -nam
 
 # Formatting correction and output to screen 
 sed "s/\/usr/\\n\/usr/g" $info1
+
+# Add blank line
+echo -e "\n"
+
+# Remove temp file
+while true
+do 
+    read -r -p "Remove temp file $info1 ?: Yes or no " response   
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]
+    then
+        rm $info1
+    else
+        exit 0
+    fi
+done 
