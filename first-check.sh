@@ -15,7 +15,7 @@ else
 	info1=/home/$(hostname)-$(date +"%F-%T".txt)
 fi
 
-echo "\n$info1"
+echo -e "\nTemp file location: $info1"
 touch $info1
 
 # -------------------------
