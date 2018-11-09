@@ -64,11 +64,12 @@ echo -e "\n"
 # Remove temp file
 while true
 do 
-    read -r -p "Remove temp file $info1 ?: Yes or no " response   
+    read -r -p "Remove temp file $info1 ?: (Yes or no) " response   
     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]
     then
         rm $info1
-	exit 0
+	echo -e "\n $info1 removed"
+	break
     else
         exit 0
     fi
