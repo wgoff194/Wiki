@@ -68,9 +68,10 @@ do
     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]
     then
         rm $info1
-	echo -e "\n $info1 removed"
+	echo -e "\n $info1 removed\n"
 	break
     else
+        echo -e "\n $info1 not removed\n"
         exit 0
     fi
 done 
