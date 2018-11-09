@@ -72,6 +72,6 @@ do
 	break
     else
         echo -e "\n $info1 not removed\n"
-        exit 0
+        break
     fi
 done 
