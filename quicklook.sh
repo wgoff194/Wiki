@@ -83,7 +83,7 @@ echo -e "\n"
 while true
 do 
     read -r -p "Remove temp file $info1 ?: Yes(default) or No " response   
-    if [[ $response =~ ^([nN][oO])$ ]]
+    if [[ $response =~ ^([nN][oO]?)$ ]]
     then    
         echo -e "\n $info1 not removed\n"
         break
