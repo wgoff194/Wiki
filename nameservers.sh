@@ -7,11 +7,21 @@
 read -p "What is the domain? " domain
 echo 
 echo -e "DOMAIN: $domain\n" 
-echo -e "REGISTRAR:\n"  
-whois $(expr match "$domain" '.*\.\(.*\..*\)')| egrep "Registrar( URL:|:)"|awk '{print $1,$2,$3,$4,$5,$6}' | sort | uniq
+echo -e "REGISTRAR:\n"
+if [ $(expr match "$domain" '.*\.\(.*\..*\)') != $domain ] 
+  then 
+  whois $(expr match "$domain" '.*\.\(.*\..*\)')| egrep "Registrar( URL:|:)"|awk '{print $1,$2,$3,$4,$5,$6}' | sort | uniq
+  else
+  whois $domain | egrep "Registrar( URL:|:)"|awk '{print $1,$2,$3,$4,$5,$6}' | sort | uniq
+fi
 echo
 echo -e "NAME SERVERS:\n"
-whois $(expr match "$domain" '.*\.\(.*\..*\)')|grep "Name Server:"|awk '{print $3}'|xargs dig|grep IN|grep -v ";"|awk '{print $1" " $5}' | sort | uniq
+if [ $(expr match "$domain" '.*\.\(.*\..*\)') != $domain ]
+  then
+  whois $(expr match "$domain" '.*\.\(.*\..*\)')|grep "Name Server:"|awk '{print $3}'|xargs dig|grep IN|grep -v ";"|awk '{print $1" " $5}' | sort | uniq
+  else
+  whois $domain |grep "Name Server:"|awk '{print $3}'|xargs dig|grep IN|grep -v ";"|awk '{print $1" " $5}' | sort | uniq
+fi
 echo
 echo -e "A Records:\n"
 dig A $domain|grep IN|grep -v ";"|awk '{print $1" " $5}' | sort | uniq
