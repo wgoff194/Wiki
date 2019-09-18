@@ -13,7 +13,7 @@ if [ "$rdomain" != "$domain" ]
   echo -e "Base DOMAIN: $rdomain\n" 
 fi
 echo -e "REGISTRAR:\n"
-if [ "$rdomain" == "$domain" ] 
+if [ "$rdomain" = "$domain" ] 
   then
   whois $domain | egrep "Registrar( URL:|:)"|awk '{print $1,$2,$3,$4,$5,$6}' | sort | uniq
   else 
@@ -21,7 +21,7 @@ if [ "$rdomain" == "$domain" ]
 fi
 echo
 echo -e "NAME SERVERS:\n"
-if [ "$rdomain" == "$domain" ]
+if [ "$rdomain" = "$domain" ]
   then
   whois $domain | grep "Name Server:"|awk '{print $3}'|xargs dig|grep IN|grep -v ";"|awk '{print $1" " $5}' | sort | uniq
   else
