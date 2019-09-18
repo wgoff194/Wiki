@@ -59,7 +59,7 @@ fi
 
 # Output mysql info 
 echo -e "MySQL info:\n" >> $info1
-echo -e "Mysql Mem configured settings: " 
+echo -e "Mysql Mem configured settings: " >> $info1
 awk '/(key|i.*b)_b.*r_(pool_)?(s.*|.*es)/{sub("="," "); print $1,$2}' /etc/my.cnf  >> $info1
 echo -e "\nMysql Mem current settings: "  >> $info1
 mysql -e "show variables" |awk '/(key|innodb)_buffer_(pool_)?(size|.*es)/{if($1~/.*es/)print$1,$2; else print$1,$2/1048576"M"}' >> $info1
