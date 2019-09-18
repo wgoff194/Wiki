@@ -17,4 +17,4 @@ echo -e "A Records:\n"
 dig A $domain|grep IN|grep -v ";"|awk '{print $1" " $5}' | sort | uniq
 echo 
 echo -e "MX Records:\n"
-dig MX $domain|grep IN|grep -v ";"|awk '{print$6}'|xargs dig A |grep IN|grep -v ";"|awk '{print $1" " $5}' | sort | uniq
+dig MX $domain|grep IN|grep -v ";"|awk '{print$6}'|xargs dig A |grep IN|grep -v ";"|awk '{print $1" " $5}' | sort | uniq | grep -v root-servers
