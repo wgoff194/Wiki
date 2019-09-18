@@ -5,14 +5,13 @@
 # -------------------------
 
 read -p "What is the domain? " domain
-mdomain=$(expr match "$domain" '.*\.\(.*\..*\)')
 echo 
 echo -e "DOMAIN: $domain\n" 
 echo -e "REGISTRAR:\n"  
-whois $mdomain | egrep "Registrar( URL:|:)"|awk '{print $1,$2,$3,$4,$5,$6}' 
+whois $(expr match "$domain" '.*\.\(.*\..*\)')| egrep "Registrar( URL:|:)"|awk '{print $1,$2,$3,$4,$5,$6}' 
 echo
 echo -e "NAME SERVERS:\n"
-whois $mdomain|grep "Name Server:"|awk '{print $3}'|xargs dig|grep IN|grep -v ";"|awk '{print $1" " $5}'
+whois $(expr match "$domain" '.*\.\(.*\..*\)')|grep "Name Server:"|awk '{print $3}'|xargs dig|grep IN|grep -v ";"|awk '{print $1" " $5}'
 echo
 echo -e "A Records:\n"
 dig A $domain|grep IN|grep -v ";"|awk '{print $1" " $5}'
