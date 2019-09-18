@@ -8,6 +8,10 @@ read -p "What is the domain? " domain
 rdomain=$(expr match "$domain" '.*\.\(.*\..*\)')
 echo 
 echo -e "DOMAIN: $domain\n" 
+if [ "$rdomain" != "$domain" ] 
+  then
+  echo -e "Base DOMAIN: $rdomain\n" 
+fi
 echo -e "REGISTRAR:\n"
 if [ "$rdomain" == "$domain" ] 
   then
